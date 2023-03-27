@@ -42,13 +42,17 @@ We provide three different ways of running our cxr-lung-risk model:
 
 ## Cloud-based Working Instance
 
-To showcase how our model works, promote transparency, and encourage further validation of our deep learning solution, [we provide the community with a free-to-use working implementation of the end-to-end pipeline through a Google Colab Notebook](notebooks/cxr_lung_risk_mwe.ipynb).
+To showcase how our model works, promote transparency, and encourage further validation of our deep learning solution, we provide the community with a free-to-use working implementation of the end-to-end pipeline through a Google Colab Notebook.
 
 The cloud-based instance allows users with minimal coding proficiency to process a large amount of CXR data without having to install anything on their local node. In the notebook, we describe all the preprocessing steps needed to convert a standard of care CXR from the DICOM format to the format the ensemble model accepts as an input - using a small sample from [Kaggle's UNIFESP X-ray Body Part Classifier Competition dataset](https://www.kaggle.com/competitions/unifesp-x-ray-body-part-classifier) as an example. We also describe thoroughly all the steps of the processing, discuss the different models composing the ensemble and their details, and provide an output sample.
 
+The Colab notebook can be accessed by clicking on the badge below.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AIM-Harvard/CXR-Lung-Risk/blob/main/notebooks/cxr_lung_risk_mwe.ipynb)
+
 ## Docker Container
 
-This repository stores a docker file that can be used to run the pipeline on a local node without the need to install any packages - besides Docker.
+This repository will also store a docker file that can be used to run the pipeline on a local node without the need to install any packages - besides Docker. **Please note we are still working on the containerization of the model, which will be made available soon.**
 
 In the folder `dockerfiles`, we provide two different files for the creation of two different docker images - one (`cuda11.5-ubuntu20.04`) supporting GPU acceleration and the other (`nocuda-ubuntu20.04`) for CPU-based inference.
 
