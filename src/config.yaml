@@ -1,0 +1,12 @@
+# args governing the input to the pipeline
+input: 
+  test_set_dir: "../dummy_datasets/test_images"
+
+processing:
+  use_gpu: true
+  gpu_id: "0"
+
+# args governing the output to the pipeline
+output:
+  # path to the directory where the output should be stored
+  out_base_path: "../output"

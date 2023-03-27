@@ -1,0 +1,21 @@
+name: cxr-lung-risk-nogpy
+channels:
+  - conda-forge
+dependencies:
+  - cudatoolkit=11.5.1
+  - pip
+  - python=3.8
+  - pip:
+    - albumentations
+    - docopt
+    - fastai==2.7.9
+    - h5py
+    - numpy
+    - pandas
+    - pydicom
+    - pyyaml
+    - pretrainedmodels
+    - scikit-image
+    - scikit-learn
+    - scipy
+    - torch

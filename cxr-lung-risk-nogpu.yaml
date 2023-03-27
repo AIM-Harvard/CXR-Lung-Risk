@@ -1,0 +1,18 @@
+name: cxr-lung-risk
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python
+  - pip:
+    - albumentations
+    - fastai==2.7.9
+    - h5py
+    - numpy
+    - oauthlib==3.2.2
+    - pandas
+    - pyyaml
+    - torch==1.10.0
+    - torchaudio==0.10.0
+    - torchvision==0.11.1
