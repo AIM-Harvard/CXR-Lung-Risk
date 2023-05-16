@@ -1,15 +1,21 @@
-# CXR-Lung-Risk: Deep learning to estimate lung-related mortality from chest radiographs
+# CXR-Lung-Risk
 
-Weiss J*, Raghu VK*, Bontempi D, Christiani DC, Mak RH, Lu MT*, and Aerts H* - "Deep learning to estimate lung-related mortality from chest radiographs". Under Review.
+Deep learning to estimate lung-related mortality from chest radiographs. This work was published in [Nature Communications](https://www.nature.com/articles/s41467-023-37758-5), and is open access!
 
-*Equal contribution
+If you use code or parts of this code in your work, please cite our publication and/or the Zenodo supplement:
+
+> Weiss, J., Raghu, V.K., Bontempi, D. et al. Deep learning to estimate lung disease mortality from chest radiographs. Nat Commun 14, 2797 (2023). https://doi.org/10.1038/s41467-023-37758-5
+
+> Weiss, Jakob, Raghu, Vineet, Bontempi, Dennis, Christiani, David, Mak, Raymond, Lu, Michael T., & Aerts, Hugo. (2023). Deep learning to estimate lung disease mortality from chest radiographs. In Nature Communications (1.0.0). Zenodo. https://doi.org/10.5281/zenodo.7941660
+
+The supporting material, including the sample data and the pre-trained Deep Learning models used in [the MWE notebook](https://github.com/AIM-Harvard/CXR-Lung-Risk/blob/main/notebooks/cxr_lung_risk_mwe.ipynb), can be found at [Zenodo project page](https://zenodo.org/record/7941660#.ZGOiqOxBzdp).
 
 # Table of Contents
 
 - [Overview](#overview)
 - [Installation and Usage](#installation-and-usage)
   - [Cloud-based Working Instance](#cloud-based-working-instance)
-  - [Docker Container](#docker-container)
+  - [MHubAI model](#mhubai-model)
   - [Local Set-up](#local-set-up)
     - [System Pre-requisites](#system-pre-requisites)
     - [Model Weights](#model-weights)
@@ -37,7 +43,7 @@ This repository contains data intended to promote reproducible research. It is n
 
 We provide three different ways of running our cxr-lung-risk model:
 - A cloud-based and free-to-use example of the end-to-end pipeline, suitable for users with minimal coding proficiency that are interested in a thorough description of all the steps of the processing and do not want to install any software on their local node;
-- A docker container, suitable for users without coding proficiency that want to process data on a local node;
+- A dockerized version of the pipeline, including a standardized interface to interact with, suitable for users without coding proficiency that want to process data on a local node;
 - The source code, complete with a working Conda environment, is suitable for users with minimal coding proficiency that want to process data on a local node.
 
 ## Cloud-based Working Instance
@@ -50,27 +56,11 @@ The Colab notebook can be accessed by clicking on the badge below.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AIM-Harvard/CXR-Lung-Risk/blob/main/notebooks/cxr_lung_risk_mwe.ipynb)
 
-## Docker Container
+## MHubAI model
 
-This repository will also store a docker file that can be used to run the pipeline on a local node without the need to install any packages - besides Docker. **Please note we are still working on the containerization of the model, which will be made available soon.**
+To make the pipeline easy to run and deploy, we are currently in the process of adding the CXR-Lung model to the collection of models in MHub.ai.
 
-In the folder `dockerfiles`, we provide two different files for the creation of two different docker images - one (`cuda11.5-ubuntu20.04`) supporting GPU acceleration and the other (`nocuda-ubuntu20.04`) for CPU-based inference.
-
-If the machine is equipped with a (CUDA 11 capable) GPU, you can run:
-
-```
-docker build . --network host cxr-lung-risk-gpu
-docker run --volume $ABSOLUTE_PATH_TO_DICOM_DATA_FOLDER:/app/data/input_data --volume $ABSOLUTE_PATH_TO_OUTPUT_FOLDER:/app/data/output_data cxr-lung-risk-gpu
-```
-
-Or, if the machine is not equipped with a (CUDA 11 capable) GPU:
-
-```
-docker build . --network host cxr-lung-risk-nogpu
-docker run --volume $ABSOLUTE_PATH_TO_DICOM_DATA_FOLDER:/app/data/input_data --volume $ABSOLUTE_PATH_TO_OUTPUT_FOLDER:/app/data/output_data cxr-lung-risk-nogpu
-```
-
-The docker containers expect all the input files (in DICOM format) to be stored at `$ABSOLUTE_PATH_TO_DICOM_DATA_FOLDER`, and will output a CSV file with the CXR-Lung-Risk scores at `$ABSOLUTE_PATH_TO_OUTPUT_FOLDER`.
+To learn more about the MHub.ai initiative and the models hosted, you can visit the [MHub.ai website](https://mhub.ai)
 
 ## Local Set-up
 
@@ -192,7 +182,7 @@ pip install -f https://download.pytorch.org/whl/cu113/torch_stable.html \
 
 To enable compatibility with such GPU. Any other `torch` versions compiled for CUDA=>11.3 should work as well.
 
-Running the pipeline from the Docker GPU-enabled container we provide will take care of this without any action from the user.
+Running the pipeline from the MHub CUDA-enabled container we provide will take care of this without any action from the user.
 
 # Acknowledgments
 
