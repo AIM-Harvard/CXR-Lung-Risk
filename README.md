@@ -84,7 +84,7 @@ Inference can be run on the GPU or CPU and should work with around 4GB of GPU VR
 
 ### Model Weights
 
-Model weights are available from the following shared location: <add-link>
+Model weights are available from the following shared location: https://zenodo.org/record/7941660#.ZGOxUuxBzdq
 
 ### Image Pre-processing
 PLCO radiographs were provided as scanned TIF files by the NCI. TIFs were converted to PNGs with a minimum dimension of 512 pixels with ImageMagick v6.8.9-9. Image preprocessing was performed as described at https://github.com/michaeltlu/cxr-risk 
@@ -139,26 +139,30 @@ The `run_cxr_lung_risk.py` script will parse arguments from the `config.yaml` re
 
 Before running the inference, the user must download the model weight files.
 
-The ensemble model weights can be downloaded from <add link> and can be downloaded either manually or running:
+The ensemble model weights can be downloaded from [Zenodo](https://zenodo.org/record/7941660#.ZGOxUuxBzdq) and can be downloaded either manually or running:
 
 ```
 cd /path/to/repo
 mkdir models
 
-wget <add link> -O models
+wget https://zenodo.org/record/7941660/files/ensamble-model-weights.zip -O ensemble-model-weights.zip
 
-unzip models/ensemble-model-weights.zip -d ../models/ && rm models/ensemble-model-weights.zip
+unzip ensemble-model-weights.zip 
+mv ensamble-model-weights/*.pth models && rm ensemble-model-weights.zip && rm -r ensemble-model-weights
 ```
 
 The InceptionV4 pre-trained model can be downloaded running the following:
 
 ```
 mkdir -p /home/$YOUR_USERNAME/.cache/torch/hub/checkpoints
-wget <add link> -O "/home/$YOUR_USERNAME/.cache/torch/hub/checkpoints/inceptionv4-8e4777a0.pth" --no-check-certificate
+
+wget https://zenodo.org/record/7941660/files/inceptionv4-8e4777a0.pth.zip" -O inceptionv4-8e4777a0.pth.zip
+
+unzip $inceptionv4-8e4777a0.pth.zip
+
+mv inceptionv4-8e4777a0.pth /home/$YOUR_USERNAME/.cache/torch/hub/checkpoints/inceptionv4-8e4777a0.pth
+rm inceptionv4-8e4777a0.pth.zip
 ```
-
-(N.B. - this is a workaround since the original link is often not responding or very slow in download speed).
-
 
 # Data
 PLCO (NCT00047385) data used for model development and testing [are available through the National Cancer Institute (NCI)](https://biometry.nci.nih.gov/cdas/plco/). NLST (NCT01696968) testing data [are available through the NCI and the American College of Radiology Imaging Network (ACRIN](https://biometry.nci.nih.gov/cdas/nlst/). Due to the terms of our data use agreement, we cannot distribute the original data. Please instead obtain the data directly from the NCI and ACRIN.
